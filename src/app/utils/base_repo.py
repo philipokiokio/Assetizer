@@ -1,0 +1,21 @@
+from sqlalchemy.orm import Session
+
+from src.app.daabase import SessionLocal
+
+
+class BaseRepo:
+    def __init__(self) -> None:
+        self.db: Session = self.get_db.__next__
+
+    @property
+    def get_db(self):
+        sess = SessionLocal()
+        try:
+            print("Database is ready!")
+            yield sess
+        except:
+            sess.rollback()
+
+        finally:
+            sess.close()
+            SessionLocal.close()
