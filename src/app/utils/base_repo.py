@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from src.app.daabase import SessionLocal
 
 
+# ORM for interaction with the DB
 class BaseRepo:
     def __init__(self) -> None:
         self.db: Session = self.get_db.__next__
