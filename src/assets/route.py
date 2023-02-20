@@ -40,8 +40,8 @@ def get_asset(id: int):
     status_code=status.HTTP_200_OK,
     response_model=schemas.MessageAssetResp,
 )
-def update_asset(id: int):
-    resp = asset_service.update_asset(id)
+def update_asset(id: int, asset_data: schemas.AssetCreate):
+    resp = asset_service.update_asset(id, asset_data)
     return resp
 
 

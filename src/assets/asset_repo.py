@@ -54,5 +54,5 @@ class AssetDataRepo(BaseRepo):
 
 # initalizing repos
 
-asset_repo = AssetRepo
-asset_data_repo = AssetDataRepo
+asset_repo = AssetRepo()
+asset_data_repo = AssetDataRepo()

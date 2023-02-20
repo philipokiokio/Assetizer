@@ -4,7 +4,7 @@ from fastapi import HTTPException, status
 # application import
 from src.assets.asset_repo import asset_data_repo, asset_repo
 
-from . import schemas
+from . import models, schemas
 
 
 class AssetService:

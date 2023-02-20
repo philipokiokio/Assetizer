@@ -6,9 +6,8 @@ from pydantic import BaseModel, EmailStr
 
 # Abstraction
 class AbstractModel(BaseModel):
-    class config:
+    class Config:
         use_enum_values = True
-
         orm_mode = True
 
 
@@ -33,7 +32,7 @@ class MessageAssetResp(ResponseModel):
 
 
 class MessageListAssetResp(ResponseModel):
-    data: List[MessageAssetResp]
+    data: List[AssetResponse]
 
 
 # AsserData from integration API
