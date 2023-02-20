@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.app.daabase import DB_URL
+from src.app.database import db_engine
+from src.assets import models, route
 
 app: FastAPI = FastAPI()
-
+models.Base.metadata.create_all(bind=db_engine)
 
 origins: list = ["*"]
 
@@ -16,6 +17,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(route.asset_router)
 
 
 @app.get("/", status_code=200)

@@ -1,7 +1,7 @@
 from sqlalchemy import TIMESTAMP, Column, Float, ForeignKey, Integer, String, text
 from sqlalchemy.orm import relationship
 
-from src.app.daabase import Base
+from src.app.database import Base
 
 
 class Asset(Base):
@@ -18,9 +18,7 @@ class Asset(Base):
 class AssetData(Base):
     __tablename__ = "Asset_Data"
     id = Column(Integer, nullable=False, primary_key=True)
-    asset_id = Column(
-        Integer, ForeignKey("Assets.id", ondelete="CASCADE", nullable=False)
-    )
+    asset_id = Column(Integer, ForeignKey("Assets.id", ondelete="CASCADE"))
     price = Column(Float, nullable=True)
     price_change = Column(Float, nullable=True)
     funding_rate = Column(Float, nullable=True)

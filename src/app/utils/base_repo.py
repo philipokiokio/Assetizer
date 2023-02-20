@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from src.app.daabase import SessionLocal
+from src.app.database import SessionLocal
 
 
 # ORM for interaction with the DB

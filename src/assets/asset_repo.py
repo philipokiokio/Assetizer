@@ -48,7 +48,7 @@ class AssetDataRepo(BaseRepo):
         self.db.refresh(new_asset_data)
         return new_asset_data
 
-    def get_by_assert(self, asset_id: int):
+    def get_by_asset(self, asset_id: int):
         return self.base_query.filter(AssetData.asset_id == asset_id).all()
 
 
