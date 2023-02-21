@@ -12,6 +12,11 @@ class AssetService:
         self.repo = asset_repo
         self.data_repo = asset_data_repo
 
+    def orm_call(self, asset_data: models.AssetData):
+        asset_data_ = asset_data.__dict__
+        asset_data_["asset"] = asset_data.asset
+        return asset_data
+
     def create_asset(self, asset_data: schemas.AssetCreate):
         # check if asset has been added for monitoring.
 
@@ -102,10 +107,14 @@ class AssetService:
                 detail="No Asset Data available", status_code=status.HTTP_404_NOT_FOUND
             )
 
+        asset_data_ = []
+
+        for asset in all_asset_data:
+            asset_data_.append(self.orm_call(asset))
         return {
             "message": "All asset data  available",
             "status": status.HTTP_200_OK,
-            "data": all_asset_data,
+            "data": asset_data_,
         }
 
 

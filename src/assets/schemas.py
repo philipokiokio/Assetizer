@@ -39,13 +39,14 @@ class MessageListAssetResp(ResponseModel):
 
 
 class AssetDataResp(AbstractModel):
+    id: int
     asset: AssetResponse
     price: float
     price_change: float
     funding_rate: float
     open_interest: float
     volume: float
-    marketcap_ratio: float
+    marketcap_ratio: Optional[float]
     date_added: datetime
 
 

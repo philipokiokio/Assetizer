@@ -51,7 +51,11 @@ def delete_asset(id: int):
     return resp
 
 
-@asset_router.get("/{id}/tracker/", status_code=status.HTTP_200_OK)
+@asset_router.get(
+    "/{id}/tracker/",
+    status_code=status.HTTP_200_OK,
+    response_model=schemas.MessageListDataResp,
+)
 def track_asset(id: int, asset: Asset = Depends(get_asset_dep)):
     resp = asset_service.get_all_asset_data(asset.id)
     return resp
