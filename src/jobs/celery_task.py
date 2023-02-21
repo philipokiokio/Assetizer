@@ -25,9 +25,7 @@ def asset_runner():
 
 
 # Run the asset Job every 12 hours
-
 app.add_periodic_task(
-    crontab(minute=1),
-    #   hour="*/12"),
+    43200,
     asset_runner.s(),
 )

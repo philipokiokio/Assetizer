@@ -1,10 +1,14 @@
+import time
+
 import ccxt
 from ccxt.base.errors import NetworkError, RequestTimeout
 
+# Instanciting Binance
 binance_ex = ccxt.binance()
 binance_ex.load_markets()
 
 
+# asset data integration with ccxt
 def asset_data_integrator(symbol):
     asset_data = {}
     funding_post_fix = symbol.split("/")[-1]
@@ -21,9 +25,14 @@ def asset_data_integrator(symbol):
         return funding_rate_, open_interest_, price_dict
 
     try:
+        asset_data = {}
+
         funding_rate_, open_interest_, price_dict = exchange_data(symbol)
 
     except (RequestTimeout, NetworkError) as e:
+        time.sleep(3)
+        asset_data = {}
+
         funding_rate_, open_interest_, price_dict = exchange_data(symbol)
 
     finally:
